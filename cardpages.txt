@@ -1,0 +1,49 @@
+import React, { useEffect, useState } from 'react';
+import CardView from '../components/cardview';
+// import axios from 'axios';
+
+function FilmsCardPage() {
+  const [films, setFilms] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    // Exemplo de dados mockados para demonstração
+    const mockFilms = [
+      { id: 1, title: 'O Poderoso Chefão', director: 'Francis Ford Coppola', year: 1972, genre: 'Crime', plot: 'Um épico sobre a família mafiosa Corleone.' },
+      { id: 2, title: 'Um Sonho de Liberdade', director: 'Frank Darabont', year: 1994, genre: 'Drama', plot: 'A história de Andy Dufresne na prisão de Shawshank.' },
+      { id: 3, title: 'A Origem', director: 'Christopher Nolan', year: 2010, genre: 'Ficção Científica', plot: 'Dom Cobb rouba segredos do subconsciente.' },
+      { id: 4, title: 'O Cavaleiro das Trevas', director: 'Christopher Nolan', year: 2008, genre: 'Ação', plot: 'Batman enfrenta o Coringa em Gotham.' },
+      { id: 5, title: 'Pulp Fiction', director: 'Quentin Tarantino', year: 1994, genre: 'Crime', plot: 'Várias histórias interligadas em Los Angeles.' },
+    ];
+
+    setFilms(mockFilms);
+    setLoading(false);
+
+    // Exemplo de como você usaria Axios para buscar dados reais:
+    /*
+    axios.get('https://api.example.com/films') // Substitua pela sua URL da API
+      .then(response => {
+        setFilms(response.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError('Erro ao carregar os filmes.');
+        setLoading(false);
+        console.error(err);
+      });
+    */
+  }, []);
+
+  if (loading) return <p>Carregando filmes...</p>;
+  if (error) return <p>{error}</p>;
+
+  return (
+    <div>
+      <h2>Lista de Filmes (Card)</h2>
+      <CardView data={films} />
+    </div>
+  );
+}
+
+export default FilmsCardPage;
