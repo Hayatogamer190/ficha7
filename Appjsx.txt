@@ -1,0 +1,46 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// Importar os componentes da Navbar e Footer
+import NavbarComponent from './components/navbar';
+import FooterComponent from './components/footer';
+
+// Importar os componentes/páginas para cada rota
+// Estes são os "dummy components" ou as páginas que criamos nos exercícios anteriores
+const HomePage = () => <h2>Página Principal</h2>;
+const ContactsPage = () => <h2>Página de Contactos (Fictícia)</h2>;
+const LoginPage = () => <h2>Página de Login</h2>;
+const SignUpPage = () => <h2>Página de Registo</h2>;
+
+// Importar os componentes de exibição de dados (Exercícios 4 e 5)
+import FilmsTablePage from './pages/tablepages'; // Ou o componente que usa TableView
+import FilmsCardPage from './pages/cardpages';   // Ou o componente que usa CardView
+
+function App() {
+  return (
+    <Router>
+      {/* Área fixa do menu de navegação (Exercício 7.1) */}
+      <NavbarComponent />
+
+      {/* Área dinâmica para o conteúdo da rota (Exercício 7.2) */}
+      {/* Ajuste o minHeight para empurrar o footer para baixo, se o conteúdo for curto */}
+      <div className="container mt-4" style={{ minHeight: 'calc(100vh - 200px)' }}> {/* Aumentei um pouco o minHeight para dar mais margem */}
+        <Routes>
+          {/* Definição das rotas (Exercício 6) */}
+          <Route path="/" element={<HomePage />} />
+          <Route path="/filmes-table" element={<FilmsTablePage />} />
+          <Route path="/filmes-card" element={<FilmsCardPage />} />
+          <Route path="/contacts" element={<ContactsPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
+        </Routes>
+      </div>
+
+      {/* Área fixa do rodapé (Exercício 7.3) */}
+      <FooterComponent />
+    </Router>
+  );
+}
+
+export default App;
