@@ -1,0 +1,29 @@
+import React from 'react';
+import { Navbar, Nav, Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import './NavbarComponent.css'; // For custom CSS if needed
+
+function NavbarComponent() {
+  return (
+    <Navbar expand="lg" variant="dark" style={{ backgroundColor: '#1b1c1d' }}> {/* Apply background color */}
+      <Container>
+        <Navbar.Brand as={Link} to="/">Ficha7</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to="/">Início</Nav.Link>
+            <Nav.Link as={Link} to="/filmes-table">Lista de filmes (tabela)</Nav.Link>
+            <Nav.Link as={Link} to="/filmes-card">Lista de filmes (card)</Nav.Link>
+            <Nav.Link as={Link} to="/contacts">Contactos</Nav.Link>
+          </Nav>
+          <Nav> {/* Right-aligned items */}
+            <Nav.Link as={Link} to="/login">Log In</Nav.Link>
+            <Nav.Link as={Link} to="/signup">Sign Up</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
+}
+
+export default NavbarComponent;
