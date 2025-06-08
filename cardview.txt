@@ -1,0 +1,43 @@
+import React from 'react';
+import { Card, Row, Col } from 'react-bootstrap';
+
+/**
+ * Componente genérico para exibir dados em formato de cartão.
+ *
+ * @param {object} props - As propriedades do componente.
+ * @param {Array<object>} props.data - O array de objetos a serem exibidos. Cada objeto será um cartão.
+ */
+function CardView({ data }) {
+  if (!data || data.length === 0) {
+    return <p>Nenhum dado para exibir em formato de cartão.</p>;
+  }
+
+  return (
+    <Row xs={1} md={2} lg={3} className="g-4"> {/* Responsive grid for cards */}
+      {data.map((item, index) => (
+        <Col key={index}>
+          <Card className="h-100 shadow-sm"> {/* h-100 para que os cards tenham a mesma altura */}
+            {/* Você pode adicionar uma imagem aqui se 'item' tiver uma propriedade 'imageUrl' */}
+            {/* {item.imageUrl && <Card.Img variant="top" src={item.imageUrl} />} */}
+            <Card.Body>
+              {/* Iterar sobre as chaves do item para exibir o conteúdo */}
+              {Object.entries(item).map(([key, value]) => (
+                // Exemplo: mostrar apenas algumas chaves ou formatar diferentemente
+                // Adapte esta lógica para o que você quer exibir em cada cartão
+                <Card.Text key={key}>
+                  <strong>{key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1').trim()}:</strong> {value}
+                </Card.Text>
+              ))}
+            </Card.Body>
+            {/* Exemplo de Card.Footer, se necessário */}
+            {/* <Card.Footer>
+              <small className="text-muted">Last updated 3 mins ago</small>
+            </Card.Footer> */}
+          </Card>
+        </Col>
+      ))}
+    </Row>
+  );
+}
+
+export default CardView;
