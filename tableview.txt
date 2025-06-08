@@ -1,0 +1,45 @@
+import React from 'react';
+import { Table } from 'react-bootstrap';
+
+/**
+ * Componente genérico para exibir dados em formato de tabela.
+ *
+ * @param {object} props - As propriedades do componente.
+ * @param {Array<object>} props.data - O array de objetos a serem exibidos. Cada objeto é uma linha da tabela.
+ * @param {Array<string>} props.columns - Um array de strings que representam as chaves dos objetos em `data`
+ * que devem ser exibidas como colunas, e também servem como cabeçalhos.
+ */
+function TableView({ data, columns }) {
+  if (!data || data.length === 0) {
+    return <p>Nenhum dado para exibir na tabela.</p>;
+  }
+
+  // Se 'columns' não for fornecido, tente inferir do primeiro objeto de dados
+  const effectiveColumns = columns && columns.length > 0
+    ? columns
+    : Object.keys(data[0]);
+
+  return (
+    <Table striped bordered hover responsive>
+      <thead>
+        <tr>
+          {effectiveColumns.map((col, index) => (
+            <th key={index}>{col.charAt(0).toUpperCase() + col.slice(1).replace(/([A-Z])/g, ' $1').trim()}</th>
+            // Formata o cabeçalho (ex: 'firstName' -> 'First Name')
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((item, rowIndex) => (
+          <tr key={rowIndex}>
+            {effectiveColumns.map((col, colIndex) => (
+              <td key={`${rowIndex}-${colIndex}`}>{item[col]}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </Table>
+  );
+}
+
+export default TableView;
