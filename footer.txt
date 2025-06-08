@@ -1,0 +1,53 @@
+import React from 'react';
+import { Container, Row, Col, Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom'; // Se quiser links no footer
+
+function FooterComponent() {
+  return (
+    <footer style={{ backgroundColor: '#1b1c1d', color: '#f8f9fa', paddingTop: '40px', paddingBottom: '20px' }}>
+      <Container>
+        <Row>
+          {/* Coluna 1: About */}
+          <Col md={4} className="mb-4 mb-md-0">
+            <h5>About</h5>
+            <Nav className="flex-column">
+              <Nav.Link as={Link} to="#" className="text-light">Sitemap</Nav.Link>
+              <Nav.Link as={Link} to="#" className="text-light">Goals & Ideals</Nav.Link>
+              <Nav.Link as={Link} to="#" className="text-light">Religion</Nav.Link>
+              <Nav.Link as={Link} to="#" className="text-light">Ceremonies</Nav.Link>
+              <Nav.Link as={Link} to="#" className="text-light">Gazebo Plans</Nav.Link>
+            </Nav>
+          </Col>
+
+          {/* Coluna 2: Services */}
+          <Col md={4} className="mb-4 mb-md-0">
+            <h5>Services</h5>
+            <Nav className="flex-column">
+              <Nav.Link as={Link} to="#" className="text-light">Banana Pre-Order</Nav.Link>
+              <Nav.Link as={Link} to="#" className="text-light">Delivery FAQ</Nav.Link>
+              <Nav.Link as={Link} to="#" className="text-light">How To Access</Nav.Link>
+              <Nav.Link as={Link} to="#" className="text-light">Favorite X-Men</Nav.Link>
+            </Nav>
+          </Col>
+
+          {/* Coluna 3: Footer Header (Example Text) */}
+          <Col md={4}>
+            <h5>Footer Header</h5>
+            <p className="text-secondary">
+              Extra space for a call to action inside the footer that could help re-engage users.
+            </p>
+            {/* Você pode adicionar mais conteúdo aqui, como um formulário de newsletter, etc. */}
+          </Col>
+        </Row>
+        <hr className="bg-light my-4" />
+        <Row>
+          <Col className="text-center text-secondary">
+            <p>&copy; {new Date().getFullYear()} Ficha7 - Todos os direitos reservados.</p>
+          </Col>
+        </Row>
+      </Container>
+    </footer>
+  );
+}
+
+export default FooterComponent;
