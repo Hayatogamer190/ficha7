@@ -1,0 +1,53 @@
+import React, { useEffect, useState } from 'react';
+import TableView from '../components/tableview';
+// Importe axios se for buscar dados de uma API, ou use dados mockados
+// import axios from 'axios';
+
+function FilmsTablePage() {
+  const [films, setFilms] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    // Exemplo de dados mockados para demonstração
+    const mockFilms = [
+      { id: 1, title: 'O Poderoso Chefão', director: 'Francis Ford Coppola', year: 1972, genre: 'Crime' },
+      { id: 2, title: 'Um Sonho de Liberdade', director: 'Frank Darabont', year: 1994, genre: 'Drama' },
+      { id: 3, title: 'A Origem', director: 'Christopher Nolan', year: 2010, genre: 'Ficção Científica' },
+      { id: 4, title: 'O Cavaleiro das Trevas', director: 'Christopher Nolan', year: 2008, genre: 'Ação' },
+      { id: 5, title: 'Pulp Fiction', director: 'Quentin Tarantino', year: 1994, genre: 'Crime' },
+    ];
+
+    setFilms(mockFilms);
+    setLoading(false);
+
+    // Exemplo de como você usaria Axios para buscar dados reais:
+    /*
+    axios.get('https://api.example.com/films') // Substitua pela sua URL da API
+      .then(response => {
+        setFilms(response.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError('Erro ao carregar os filmes.');
+        setLoading(false);
+        console.error(err);
+      });
+    */
+  }, []);
+
+  if (loading) return <p>Carregando filmes...</p>;
+  if (error) return <p>{error}</p>;
+
+  // Definir as colunas que você quer exibir e a ordem
+  const filmColumns = ['id', 'title', 'director', 'year', 'genre'];
+
+  return (
+    <div>
+      <h2>Lista de Filmes (Tabela)</h2>
+      <TableView data={films} columns={filmColumns} />
+    </div>
+  );
+}
+
+export default FilmsTablePage;
